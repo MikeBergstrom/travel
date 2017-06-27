@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Welcome</title>
+          {% load staticfiles %}
+        <link rel="stylesheet" type = "text/css" href="{% static 'login/css/style.css' %}"> 
+    </head>
+    <body>
+        <header>
+            <h1>Welcome!</h1>
+        </header>
+        <form id="login" action='/login' method='POST'>
+            <h2>Login:</h2>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if "login" in message.tags %}
+                        <p>{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% csrf_token %}
+            Username: <input type = "text" name="username">
+            Password: <input type="password" name="password">
+            <input type="submit" value="Login"> 
+        </form>
+        <form id="register" action='/register' method='POST'>
+            <h2>Register:</h2>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if "register" in message.tags %}
+                        <p>{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% csrf_token %}
+            Name: <input type="text" name="name">
+            Username: <input type = "text" name="username">
+            Password: <input type="password" name="password">
+            Confirm Password: <input type="password" name="confirm">
+            <input type="submit" value="Register"> 
+        </form>
+    </body>
+    </body>
+</html>
